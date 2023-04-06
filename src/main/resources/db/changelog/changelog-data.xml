@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="set-unique-name-2" author="alexey">
+        <sql>
+            insert into users(id, name) values (1, 'admin');
+            insert into users(id, name) values (2, 'user');
+
+            insert into project(id, name, user_id) values (1, 'Hello World!', 1);
+            insert into project(id, name, user_id) values (2, 'LoopTest', 1);
+            insert into project(id, name, user_id) values (3, 'Hello World!', 2);
+            insert into project(id, name, user_id) values (4, 'Exercise', 2);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

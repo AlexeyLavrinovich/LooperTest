@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="set-unique-name-1" author="alexey">
+        <sql>
+            create table users (
+                id BIGINT not null,
+                name varchar(255) not null,
+                primary key (id)
+            );
+
+            create table project (
+                id BIGINT not null,
+                name varchar(255) not null,
+                user_id BIGINT not null,
+                primary key (id)
+            );
+
+            alter table if exists project
+                add constraint project_fk
+                foreign key (user_id) references users;
+        </sql>
+<!--        <createTable tableName="user">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
+<!--        <createTable tableName="project">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)"/>-->
+<!--            <column name="user_id" type="BIGINT">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+    </changeSet>
+
+</databaseChangeLog>
