@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "project")
+@ToString
 public class Project {
 
     @Id
